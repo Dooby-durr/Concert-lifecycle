@@ -1,0 +1,39 @@
+CREATE TABLE "Concert" (
+	"Concert_ID"	INTEGER NOT NULL,
+	"Title"	TEXT,
+	"Description"	TEXT,
+	"Date"	TEXT,
+	"Time"	INTEGER,
+	PRIMARY KEY("Concert_ID" AUTOINCREMENT)
+);
+
+CREATE TABLE "PERSON" (
+	"Person_ID"	INTEGER NOT NULL UNIQUE,
+	"NAME" TEXT NOT NULL,
+	"DESCRIPTION" TEXT,
+	"AGE" INTEGER,
+	"CONCERT" INTEGER NOT NULL,
+	PRIMARY KEY("Person_ID" AUTOINCREMENT)
+	FOREIGN KEY (CONCERT) REFERENCES Concert(Concert_ID)
+);
+
+CREATE TABLE "Performer" (
+	"Performer_ID" INTEGER NOT NULL,
+	"Instrument" TEXT,
+	"Person_ID"	INTEGER,
+	FOREIGN KEY (Person_ID) REFERENCES PERSON(Person_ID)
+	PRIMARY KEY ("Performer_ID")
+);
+CREATE TABLE "Attendee" (
+	"Attendee_ID" INTEGER NOT NULL,
+	"Person_ID"	INTEGER,
+	FOREIGN KEY (Person_ID) REFERENCES PERSON(Person_ID)
+	PRIMARY KEY ("Attendee_ID")
+);
+CREATE TABLE "Employee" (
+	"Employee_ID" INTEGER NOT NULL,
+	"Job_Title" TEXT,
+	"Person_ID"	INTEGER,
+	FOREIGN KEY (Person_ID) REFERENCES PERSON(Person_ID)
+	PRIMARY KEY ("Employee_ID")
+);
